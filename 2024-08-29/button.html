@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lucky Ball Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            margin-top: 15px;
+            box-sizing: border-box; 
+        }
+        .randomNumber {
+            border-radius: 50%; 
+            text-align: center; 
+            border: solid black 1px;
+            margin: 5px;
+            font-size: 20px;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+        }
+        #callAlert {
+            margin-top: 15px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+     
+    </style>
+</head>
+<body>
+    <button onclick="setBackgroundColor('blue')">Blue</button>
+    <button onclick="setBackgroundColor('red')">Red</button>
+    <button onclick="setBackgroundColor('white')">White</button>
+    <button onclick="setBackgroundColor('violet')">violet</button>
+    <button id="generateButton" onclick="generateRandomNumber()">Ridenti kamuoliuką</button>
+    
+    <div id="Skaiciai" class="container"></div>
+    <div id="callAlert"></div>
+
+    <script>
+        let luckyBallNumber;
+        let luckyNumberGenerated = false; 
+
+
+        function random(min, max) {
+            const minCeiled = Math.ceil(min);
+            const maxFloored = Math.floor(max);
+            return Math.floor(
+                Math.random() * (maxFloored - minCeiled + 1) + minCeiled
+            );
+        }
+
+
+      /*function Blue() {
+      document.body.style.backgroundColor = "blue";
+      }
+      function Red() {
+      document.body.style.backgroundColor = "red";
+      }
+      function White() {
+      document.body.style.backgroundColor = "white";
+      }
+      */
+        function setBackgroundColor(color) {
+            document.body.style.backgroundColor = color;
+        }
+
+
+        function generateRandomNumber() {
+            if (luckyNumberGenerated) return; 
+
+            const RandomNumber = random(0, 100);
+            const NaujiSkaiciai = document.createElement('span');
+            NaujiSkaiciai.className = 'randomNumber';
+            NaujiSkaiciai.innerText = RandomNumber;
+
+
+            if (RandomNumber <= 19) {
+                NaujiSkaiciai.style.backgroundColor = "black";
+                NaujiSkaiciai.style.color = "white";
+            } else if (RandomNumber <= 39) {
+                NaujiSkaiciai.style.backgroundColor = "yellow";
+                NaujiSkaiciai.style.color = "black";
+            } else if (RandomNumber <= 59) {
+                NaujiSkaiciai.style.backgroundColor = "red";
+                NaujiSkaiciai.style.color = "white";
+            } else if (RandomNumber <= 79) {
+                NaujiSkaiciai.style.backgroundColor = "blue";
+                NaujiSkaiciai.style.color = "white";
+            } else {
+                NaujiSkaiciai.style.backgroundColor = "green";
+                NaujiSkaiciai.style.color = "white";
+            }
+
+           
+            
+
+            if (RandomNumber === luckyBallNumber) {
+                document.getElementById('callAlert').innerText = "SKAMBUTIS!!!";
+                document.getElementById('generateButton').disabled = true;
+                document.getElementById('generateButton').classList.add('disabled');
+                luckyNumberGenerated = true;
+            }
+
+            document.getElementById('Skaiciai').appendChild(NaujiSkaiciai);
+        }
+
+        function initializeGame() {
+            luckyBallNumber = random(0, 100);
+            document.getElementById('callAlert').innerText = '';
+            luckyNumberGenerated = false; 
+            const generateButton = document.getElementById('generateButton');
+            generateButton.disabled = false;
+            generateButton.classList.remove('disabled');
+        }
+
+        window.onload = initializeGame;
+    </script>
+</body>
+</html>
