@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        function random(min, max) {
+            const minCeiled = Math.ceil(min);
+            const maxFloored = Math.floor(max);
+            return Math.floor(
+                Math.random() * (maxFloored - minCeiled + 1) + minCeiled
+            );
+        }
+
+        document.write(`<h1>---1 Užduotis ---</h1>`);
+        // Sukurkite masyvą iš dešimties augalų pavadinimų.
+
+        const Plants = ['Peace lily',  'Aloe vera', 'Snake plant','Sword fern','Rose','Spider Plant','Jasmine', 'Lavender','Rubber plant','Orchid' ];
+        document.write(Plants.join(' - '));
+
+
+
+
+
+
+        document.write(`<h1>---2 Užduotis---</h1>`);
+        // Atspausdinkite kiekvieną pirmo uždavinio augalą atskiroje eilutėje.
+
+        for (let i = 0; i < Plants.length; i++) {
+            document.write(Plants[i] + '<br>');
+        }
+
+
+
+
+
+
+        document.write(`<h1>---3 Užduotis---</h1>`);
+        // Atspausdinkite pirmo uždavinio kiekvieną augalą pradedant nuo paskutinio, ir baigiant pirmuoju. (atvirkščias ciklas).
+
+        Plants.reverse();
+        document.write(Plants.join(' - '));
+
+
+
+
+
+
+
+
+        document.write(`<h1>---4 Užduotis---</h1>`);
+        // Suskaičiuokite kiek pirmo uždavinio masyve yra žodžių trumpesnių nei 5 simboliai, ir kiek ilgesnių nei 7 simboliai. 
+
+        for (let i = 0; i < Plants.length; i ++) {
+            if(Plants[i].length < 5 || Plants[i].length > 7)
+            document.write(`<br> ${Plants[i]}`);
+        }
+
+        let SmallWords = 0;
+        let BigWords = 0;
+
+        for(let i = 0; i < Plants.length; i++) {
+            if(Plants[i].length < 5){
+                SmallWords++
+            }
+            if(Plants[i].length > 7) {
+                BigWords++
+            }
+        }
+        document.write(`<br> Maži žodžiai yra ${SmallWords}<br> Dideli žodžiai yra ${BigWords}`)
+
+
+
+
+
+
+        document.write(`<h1>---5 Užduotis---</h1>`);
+        // Suskaičiuokite kiek pirmo uždavinio masyve yra žodžių ilgesnių nei 5 simboliai bet trumpesnių  nei 10 simboliai. 
+
+      let MediumWords = 0;
+
+      for(let i = 0; i < Plants.length; i++) {
+        if (Plants[i].length > 5 && Plants[i].length < 10) {
+        document.write(`${Plants[i]} <br>`)
+        MediumWords++
+        }
+      }
+      document.write(`<br> Vidutiniu žodžių yra: ${MediumWords}`)
+
+
+
+
+
+
+
+        document.write(`<h1>---1  Sunkesnė Užduotis---</h1>`);
+        // Sugeneruokite masyvą iš 30 elementų (indeksai nuo 0 iki 29), kurių reikšmės yra atsitiktiniai skaičiai nuo 5 iki 25.
+
+        const skaiciuMasyvas = [];
+
+        for (let i = 0; i < 30; i++) {
+            skaiciuMasyvas[i] = random(5, 25);
+        }
+        document.write(skaiciuMasyvas.join(', '));
+
+
+
+
+
+
+
+        document.write(`<h1>---2 A Užduotis---</h1>`);
+        // Naudodamiesi 1 uždavinio masyvu:
+        // Suskaičiuokite kiek masyve yra reikšmių didesnių už 10;
+        let BiggerNumbers = 0;
+
+        for (let i = 0; i < skaiciuMasyvas.length; i++) {
+            if (skaiciuMasyvas[i] >= 10) {
+                BiggerNumbers++;
+            }
+        }
+        document.write(BiggerNumbers);
+
+
+
+
+
+
+        document.write(`<h1>---2  B Užduotis---</h1>`);
+        // Raskite didžiausią masyvo reikšmę ir jos indeksą arba indeksus jeigu yra keli;
+
+
+        let BiggestNumber = Math.max(...skaiciuMasyvas);
+        for (let i = 0; i < skaiciuMasyvas.length; i++) {
+            if (BiggestNumber === skaiciuMasyvas[i]) {
+                document.write(`<br> Didžiausias skaičius yra ${BiggestNumber}, jo vieta: ${i}`);
+            }
+        }
+
+
+
+
+
+
+        document.write(`<h1>---2  C Užduotis---</h1>`);
+        // Suskaičiuokite visų porinių (lyginių) indeksų reikšmių sumą;
+
+        let Porinis = 0;
+
+        for (let i = 0; i < skaiciuMasyvas.length; i++) {
+            if (i % 2 === 0) {
+                Porinis += skaiciuMasyvas[i];
+            }
+        }
+        document.write(Porinis);
+
+
+
+
+
+
+        document.write(`<h1>---2  D Užduotis---</h1>`);
+        // Sukurkite naują masyvą, kurio reikšmės yra 1 uždavinio masyvo reikšmes minus tos reikšmės indeksas;
+
+        let NaujasMasyvas = [];
+
+        for (let i = 0; i < skaiciuMasyvas.length; i++) {
+            NaujasMasyvas.push(skaiciuMasyvas[i] - i);
+        }
+        document.write(NaujasMasyvas.join(', '));
+
+
+
+
+
+
+        document.write(`<h1>---2  E Užduotis---</h1>`);
+        // Papildykite masyvą papildomais 10 elementų su reikšmėmis nuo 5 iki 25, kad bendras masyvas padidėtų iki indekso 39;
+
+        for (let i = 0; i < 10; i++) {
+            let ExtraNumbers = random(5, 25);
+            skaiciuMasyvas.push(ExtraNumbers);
+        }
+        document.write(`Papildomi skaičiai: ${skaiciuMasyvas.join(', ')}<br> Ilgis: ${skaiciuMasyvas.length}`);
+
+
+
+
+
+        document.write(`<h1>---2  F Užduotis---</h1>`);
+        // Iš masyvo elementų sukurkite du naujus masyvus. Vienas turi būti sudarytas iš neporinių indeksų reikšmių, o kitas iš porinių;
+
+        const Porinis1 = [];
+        const Neporinis = [];
+
+        for (let i = 0; i < skaiciuMasyvas.length; i++) {
+            if (i % 2 === 0) {
+                Porinis1.push(skaiciuMasyvas[i]);
+            } else {
+                Neporinis.push(skaiciuMasyvas[i]);
+            }
+        }
+        document.write(`Poriniai: ${Porinis1.join(', ')} <br> Neporiniai: ${Neporinis.join(', ')}`);
+
+
+
+
+
+
+
+        document.write(`<h1>---2  G Užduotis---</h1>`);
+        // Pirminio masyvo elementus su poriniais indeksais padarykite lygius 0 jeigu jie didesni už 15;
+
+        for (let i = 0; i < skaiciuMasyvas.length; i++) {
+            if (skaiciuMasyvas[i] % 2 === 0 && skaiciuMasyvas[i] > 15) {
+                skaiciuMasyvas[i] = 0;
+            }
+        }
+        document.write(`Atnaujintas masyvas: ${skaiciuMasyvas.join(', ')}`);
+
+
+
+
+
+
+        
+        document.write(`<h1>---2  H Užduotis---</h1>`);
+        // Suraskite pirmą indeksą, kurio elemento reikšmė didesnė už 10;
+
+        for (let i = 0; i < skaiciuMasyvas.length; i++) {
+            if (skaiciuMasyvas[i] > 10) {
+                document.write(`Už 10 daugiau yra ${skaiciuMasyvas[i]}, indeksas ${i}`);
+                break;
+            }
+        }
+
+
+
+
+
+        
+        document.write(`<h1>---2  I Užduotis---</h1>`);
+        // Sukurkite naują masyvą iš jo pašalinę visus elementus turinčius porinį indeksą;
+
+        let NeporiniaiSkaiciai = [];
+
+        for (let i = 0; i < skaiciuMasyvas.length; i++) {
+            if (skaiciuMasyvas[i] % 2 !== 0) {
+                NeporiniaiSkaiciai.push(skaiciuMasyvas[i]);
+            }
+        }
+        document.write(`Neporiniai skaiciai: ${NeporiniaiSkaiciai.join(', ')}`);
+    </script>
+</body>
+</html>
