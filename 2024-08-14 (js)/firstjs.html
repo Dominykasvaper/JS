@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+           function random(min, max) {
+            const minCeiled = Math.ceil(min);
+            const maxFloored = Math.floor(max);
+            return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
+
+        }
+        // pirma užduotis
+        let Vardas = 'Dominykas';
+        let Pavarde = 'Krūminas';
+        let Data = 'Gimimo metai';
+        let GimimoMetai = 2002;
+        console.log(`Aš esu ${Vardas} ${Pavarde}. Gimiau ${GimimoMetai} metais, Man yra ${ 2024 - GimimoMetai} metai.`);
+    
+        // antra užduotis
+        let number = (random(0, 4));
+        let number1 =(random(0, 4));
+
+        console.log(number, number1);
+        if (number > number1) {
+            console.log(Math.round(number / number1));
+        } else if (number1 > number) {
+            console.log(Math.round(number1 / number));
+        } else {
+            console.log("Lygus skaičiai");
+        }
+
+        // trečia užduotis
+        let skaicius = (random(0, 25));
+        let skaicius1 = (random(0, 25));
+        let skaicius2 = (random(0, 25));
+        console.log(skaicius, skaicius1, skaicius2);
+
+        if (skaicius > skaicius1 & skaicius > skaicius2) {
+            console.log(skaicius);
+        } else if (skaicius1 > skaicius2 & skaicius1 > skaicius2) {
+            console.log(skaicius1);
+        } else {
+            console.log(skaicius2);
+        }
+        /*
+        // ketvirta užduotis
+        function random() {
+        return Math.floor(Math.random() * 3);
+        }
+        let values = [];
+
+        for (let i = 0; i < 4; i++) {
+        values.push(random());
+        }
+
+        let Zeros = 0;
+        let Ones = 0;
+        let Twos = 0;
+
+        for (let value of values) {
+        if (value === 0) Zeros++;
+        else if (value === 1) Ones++;
+        else if (value === 2) Twos++;
+        }
+
+        console.log("Gauti skaičiai:", values);
+        console.log("Kiek 0:", Zeros);
+        console.log("Kiek 1:", Ones);
+        console.log("Kiek 2:", Twos);
+*/
+        // penkta užduotis
+
+        let FirstNumber = random(-10, 10);
+        let SecondNumber = random(-10, 10);
+        let ThirdNumber = random(-10, 10);
+
+        if (FirstNumber < 0) {
+            console.log("["+FirstNumber+"]");    
+        }
+        else if (FirstNumber > 0) {
+            console.log("{"+FirstNumber+"}"); 
+        }
+        else if (FirstNumber === 0) {
+            console.log("("+FirstNumber+")"); 
+        }
+        if (SecondNumber < 0) {
+            console.log("["+SecondNumber+"]");    
+        }
+        else if (SecondNumber > 0) {
+            console.log("{"+SecondNumber+"}"); 
+        }
+        else if (SecondNumber === 0) {
+            console.log("("+SecondNumber+")"); 
+        }
+        if (ThirdNumber < 0) {
+            console.log("["+ThirdNumber+"]");    
+        }
+        else if (ThirdNumber > 0) {
+            console.log("{"+ThirdNumber+"}"); 
+        }
+        else if (ThirdNumber === 0) {
+            console.log("("+ThirdNumber+")"); 
+        }
+
+        // Šesta užduotis
+
+        let CandleUnics = random(5, 3000);
+
+        if (CandleUnics < 1000){
+        console.log(CandleUnics + " Candles");
+        console.log(CandleUnics + " eur");
+    }
+        else if (CandleUnics > 1000) {
+        console.log(CandleUnics + " Candles");
+        console.log(CandleUnics - (CandleUnics * 0.03) + " eur");
+    }
+        else if (CandlesUnics > 2000) {
+        console.log(CandleUnics + " Candles");
+        console.log(CandleUnics - (CandleUnics * 0.04) + " eur");
+    }
+
+    // Septinta užduotis
+
+    let RandomSkaičius = random(0, 100);
+    let RandomSkaičius1 = random(0, 100);
+    let RandomSkaičius2 = random(0, 100);
+
+    console.log(RandomSkaičius / 2, RandomSkaičius1 / 2, RandomSkaičius2 / 2);
+    console.log(RandomSkaičius, RandomSkaičius1, RandomSkaičius2);
+
+    // Kartojimas
+
+    let televizoriai = random(5, 3000);
+    if (televizoriai < 1000){
+    console.log(televizoriai + " Kaina");
+    console.log(televizoriai + " Kaina");
+    }
+    else if(televizoriai > 1000){
+        console.log(televizoriai + " Kaina");
+        console.log(televizoriai - (televizoriai * 0.03) + " Kaina");
+    }
+    else if(televizoriai > 2000){
+        console.log(televizoriai + "sex");
+        console.log(televizoriai - (televizoriai * 0.04) + "Kaina");
+    }
+    </script>
+</body> 
+</html>
