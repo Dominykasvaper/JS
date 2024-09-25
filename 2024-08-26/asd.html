@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function random(min, max) {
+        const minCeiled = Math.ceil(min);
+        const maxFloored = Math.floor(max);
+        return Math.floor(
+          Math.random() * (maxFloored - minCeiled + 1) + minCeiled
+        );
+      }
+      // Sugeneruokite masyvą iš 10 elementų, kurio elementai būtų masyvai iš 5 elementų su reikšmėmis nuo 5 iki 25.
+      const masyvas = [];
+      for (let i = 0; i < 10; i++) {
+        masyvas[i] = [];
+        for (let j = 0; j < 5; j++) {
+          masyvas[i][j] = random(5, 25);
+        }
+      }
+      console.log(masyvas);
+
+      // Suskaičiuokite kiek masyve yra elementų didesnių už 10;
+      let daugiauuz10 = 0;
+
+      for (let i = 0; i < masyvas.length; i++) {
+        for (let j = 0; j < masyvas[i].length; j++) {
+          if (masyvas[i][j] >= 10) {
+            daugiauuz10++;
+          }
+        }
+      }
+      document.write(daugiauuz10);
+
+      // Raskite didžiausio elemento reikšmę;
+
+      let maxValue = Math.max(...masyvas.flat());
+      let vietaMasyve = masyvas.flat().indexOf(maxValue);
+
+      document.write(
+        `<br> visas masyvas: ${masyvas.flat()}<br> ${maxValue} vieta indekse: ${vietaMasyve}`
+      );
+
+      // Suskaičiuokite kiekvieno antro lygio masyvų su vienodais indeksais sumas (t.y. suma reikšmių turinčių indeksą 0, 1 ir t.t.)
+
+      let suma = new Array(5).fill(0);
+
+      for (let i = 0; i < masyvas.length; i++) {
+        for (let j = 0; j < masyvas[i].length; j++) {
+          suma[j] += masyvas[i][j];
+        }
+      }
+      document.write(`<br> Masyvas: ${masyvas} <br> Suma jų ${suma}`);
+
+      // Visus antro lygio masyvus “pailginkite” iki 7 elementų
+
+      masyvas.forEach((innerArray) => {
+        innerArray.push(random(5, 25), random(5, 25));
+      });
+      console.log(masyvas);
+
+      //Suskaičiuokite kiekvieno iš antro lygio masyvų elementų sumą ir patalpinkite reikšmes naujame masyve.
+
+      const naujasMasyvas = [];
+
+      for (let i = 0; i < masyvas.length; i++) {
+        let sumaMasyvas = masyvas[i].reduce((sum, value) => sum + value, 0);
+        naujasMasyvas.push(sumaMasyvas);
+      }
+
+      document.write(`<br>Horizontali masyvų suma: ${naujasMasyvas}`);
+    </script>
+  </body>
+</html>
