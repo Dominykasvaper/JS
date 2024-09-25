@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <style>
+      body {
+        background-color: bisque;
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 50px;
+        height: 100vh;
+        margin: 0;
+        flex-direction: column;
+      }
+    </style>
+
+    <h1>Timer</h1>
+    <p id="timer">10:00</p>
+
+    <script>
+      let duration = 60 * 10;
+      let display = document.querySelector("#timer");
+      let timer = duration, minutes, seconds;
+      
+
+      setInterval(() => {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+        if (--timer < 0) {
+          timer = duration;
+        }
+      }, 1000);
+    </script>
+  </body>
+</html>
