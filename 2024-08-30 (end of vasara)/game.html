@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click Game</title>
+    <style>
+        .box {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            cursor: pointer;
+        }
+        .game-info {
+            margin-bottom: 20px;
+        }
+        .kubas {
+            width: 500px;
+            height: 500px;
+            background-color: pink;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div class="kubas">
+        <div class="game-info">
+            <div>Time: <span class="time">0 s</span></div>
+            <div class="left">Game Results:</div>
+        </div>
+        <div class="right">
+            <div class="results"></div>
+        </div>
+    </div>
+
+    <script>
+        function random(min, max) {
+            const minCeiled = Math.ceil(min);
+            const maxFloored = Math.floor(max);
+            return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
+        }
+
+        const colors = ['red', 'green', 'yellow', 'black', 'brown', 'blue'];
+        let rounds = 10;
+        let time = 30;
+        let onTarget = 0;
+        let sec = 0;
+        let totalHits = time;
+        let currentRound = 1;
+        let resultsArray = []; 
+
+        function createBox() {
+            
+            const existingBox = document.querySelector('.box');
+            if (existingBox) {
+                existingBox.remove();
+            }
+
+            const box = document.createElement('div');
+            box.className = 'box';
+            box.style.backgroundColor = colors[random(0, colors.length - 1)];
+            box.style.top = `${random(0, 450)}px`;
+            box.style.left = `${random(0, 450)}px`;
+
+            box.onclick = function() {
+                onTarget++;
+                this.remove();
+            };
+
+            document.querySelector('.kubas').appendChild(box);
+        }
+
+        const laikmatis = setInterval(timer, 1000);
+
+        function timer() {
+            if (sec < time) {
+                sec++;
+                document.querySelector(".time").textContent = `${sec} s`;
+                createBox();
+            } else if (sec === time) {
+                win();
+            }
+        }
+
+        function win() {
+            let result;
+            if(onTarget > totalHits / 2) {
+                result = `Game ${currentRound}: You win <br> Your points: ${onTarget}, Computer points: ${totalHits - onTarget}`;
+            } else if(onTarget === totalHits / 2) {
+                result = `Game ${currentRound}: It's a tie <br> Your points: ${onTarget}, Computer points: ${totalHits - onTarget}`;
+            } else {
+                result = `Game ${currentRound}: You lose <br> Your points: ${onTarget}, Computer points: ${totalHits - onTarget}`;
+            }
+
+            resultsArray.push(result);
+            document.querySelector(".left").innerHTML += result + '<br>';
+
+            if (currentRound < rounds) {
+                currentRound++;
+                resetGame();
+            } else {
+                clearInterval(laikmatis);
+                document.querySelector(".results").innerHTML = `Game over <br> ${resultsArray.join('<br>')}`;
+                document.querySelector(".right").innerHTML = `Game over`;
+            }
+        }
+
+        function resetGame() {
+            sec = 0;
+            onTarget = 0;
+            totalHits = time;
+            document.querySelector(".time").textContent = `${sec} s`;
+            document.querySelector(".results").textContent = '';
+            const existingBox = document.querySelector('.box');
+            if (existingBox) {
+                existingBox.remove();
+            }
+        }
+    </script>
+</body>
+</html>
