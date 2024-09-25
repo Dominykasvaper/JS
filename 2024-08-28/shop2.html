@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body,
+      html {
+        background-color: #d1c8fe;
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .container {
+        width: 1000px;
+        height: 700px;
+        background-color: white;
+        border-radius: 10px;
+        display: flex;
+        justify-content: flex-end;
+        position: relative;
+      }
+
+      .container2 {
+        width: 200px;
+        height: 700px;
+        background-color: gray;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+      }
+
+      button {
+        position: absolute;
+        top: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .firstLine {
+        position: absolute;
+        right: 55%;
+        top: 25%;
+        width: 180px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .firstLine hr {
+        width: 400%;
+        border: 1px solid gray;
+        position: absolute;
+        bottom: 5%;
+        left: -130%;
+      }
+
+      .nuotrauka1 {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        right: 185%;
+        top: 30%;
+      }
+      .shoppinCart {
+        position: absolute;
+        right: 83%;
+        top: 10%;
+        font-size: 22px;
+        font-weight: 700;
+      }
+      .items3 {
+        position: absolute;
+        top: 10%;
+        right: 30%;
+        color: gray;
+      }
+      .tekstas {
+        position: absolute;
+        right: 100%;
+        margin-top: 15px;
+        width: 150px;
+        line-height: 35px;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="shop.html">
+      <button>Continue Shopping Baby Girl</button>
+    </a>
+    <div class="container">
+      <div class="shoppinCart">Shopping Cart</div>
+      <div class="items3">3 items</div>
+      <div class="firstLine">
+        <img class="nuotrauka1" src="nuotraukos/image1.png" alt="Image" />
+        <div class="tekstas">
+        <div style="color: gray;">Shirt</div>
+        <div style="font-weight: 700;">Cotton T-shirt</div>
+        </div>
+        <hr/>
+      </div>
+      <div class="container2"></div>
+      
+      
+    </div>
+
+    
+  </body>
+</html>

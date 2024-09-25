@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>something </title>
+</head>
+<body>
+    <style>
+        body {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            left: 40%;
+            top: 50px;
+            overflow-x: hidden;
+            /*overflow-y: hidden;*/
+        }
+        h2 {
+            color: #589ade;
+            font-size: 14px;
+            position: relative;
+            top: 10px;
+        }
+        .linija {
+            width: 45%;
+            position: relative;
+            right: 250px;
+        }
+        .nuotraukos {
+            width: 150px;
+            height: 150px;
+            position: absolute;
+            right: 105%;
+        }
+       .aprašymas {
+        position: relative;
+        bottom: 25px;
+       }
+       .price {
+        position: relative;
+        font-size: 30px;
+        left: 400px;
+        bottom: 20px;
+       }
+       .button1 {
+        position: relative;
+        left: 400px;
+        top: 30px;
+        background-color: #fcb800;
+        height: 50px;
+        width: 200px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+       }
+       .checked {
+        color: orange;
+        position: relative;
+        bottom: 50px;
+        }
+        .fa-star {
+            position: relative;
+            bottom: 50px;
+        }
+        /*.box {
+            background-color: red;
+            width: 50px;
+            height: 25px;
+            position: relative;
+            
+        }
+        */
+        .discounted-price {
+            color: #ff4b1e;
+        }
+        .price {
+            font-size: 24px;
+            font-weight: bold;
+            color: #000;
+        }
+        .price1 {
+            position: relative;
+            bottom: 5px;
+            left: 5px;
+            color: #a8a8a8;
+        }
+        .discount-tag {
+            background-color: red;
+            color: white;
+            padding: 3px;
+            font-size: 14px;
+            position: relative;
+            width: 50px;
+            bottom: 110px;
+            right: 100px;
+            text-align: center;
+        }
+        .CheckOut {
+            position: absolute;
+            width: 150px;
+            height: 50px;
+            top: -7%;
+            margin-left: 464px;
+        }
+    </style>
+
+      <a href="shop2.html">
+        <button class="CheckOut">Check Out</button>
+      </a>
+
+    <div class="eilutes"></div>
+    <script>
+        const masyvas = [
+            {
+                stars: '<span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span>',
+                linija: '<hr>',
+                nuotrauka: '<img class = "nuotraukos" src="nuotraukos/image1.png"/>',
+                pavadinimas: 'Amcrest Security Camera',
+                kaina: '$45.90',
+                button: '<button class = "button1">Add to Cart</button>',
+                aprašymas: 'Curabitur at lacus ac velit ornare lobortis. Proin viverra, <br> ligula sit amet ultrices semper, ligula arcu tristique <br> sapien, a accumsan nisi mauris ac eros. Praesent porttitor, <br> nulla vitae posuere iaculis, arcu nisl dignissim dolor, a <br> pretium mi sem ut ipsum. Ut varius tincidunt libero.',
+                nuolaida: ''
+            },
+            {
+                stars: '<span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span>',
+                linija: '<hr>',
+                nuotrauka: '<img class = "nuotraukos" src="nuotraukos/image2.jpg"/>',
+                pavadinimas: 'Canon mx492 wireless All-IN-One Small Printer',
+                kaina: '<span class="discounted-price">$250.00</span> <span class="price1"><del>$300.00</del></span>',
+                button: '<button class = "button1">Add to Cart</button>',
+                aprašymas: 'Curabitur at lacus ac velit ornare lobortis. Proin viverra, <br> ligula sit amet ultrices semper, ligula arcu tristique <br> sapien, a accumsan nisi mauris ac eros. Praesent porttitor, <br> nulla vitae posuere iaculis, arcu nisl dignissim dolor, a <br> pretium mi sem ut ipsum. Ut varius tincidunt libero.',
+                nuolaida: '<div class="discount-tag">-17%</div>'
+            },
+            {
+                stars: '<span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>',
+                linija: '<hr>',
+                nuotrauka: '<img class = "nuotraukos" src="nuotraukos/image3.jpeg"/>',
+                pavadinimas: 'Samsung 55-inch 4K Ultra HD Smart LED TV',
+                kaina: '<span class="discounted-price">$350.00</span> <span class="price1"><del>$400.00</del></span>',
+                button: '<button class = "button1">Add to Cart</button>',
+                aprašymas: 'Curabitur at lacus ac velit ornare lobortis. Proin viverra, <br> ligula sit amet ultrices semper, ligula arcu tristique <br> sapien, a accumsan nisi mauris ac eros. Praesent porttitor, <br> nulla vitae posuere iaculis, arcu nisl dignissim dolor, a <br> pretium mi sem ut ipsum. Ut varius tincidunt libero.',
+                nuolaida: '<div class="discount-tag">-13%</div>'
+            }
+        ];
+        
+        let html = '';
+
+        for(const preke of masyvas) {
+            html += `<div class="product">
+                
+                <div class="linija">${preke.linija}</div>
+                <h2>${preke.pavadinimas}</h2>
+                <div class="nuotrauka">${preke.nuotrauka}</div>
+                <div class="price">${preke.kaina}</div>
+                <div class="button">${preke.button}</div>
+                <div class="stars">${preke.stars}</div>
+                <div class="nuolaida">${preke.nuolaida}</div>
+                <div class="aprašymas">${preke.aprašymas}</div>
+                </div>`;
+        }
+
+        document.querySelector('.eilutes').innerHTML = html;
+    </script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+body {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top: 50px;
+    left: 325px;
+    background-color: blanchedalmond;
+    overflow-x: hidden;
+}
+h2 {
+    color: #589ade;
+    font-size: 26px;
+    position: relative;
+    margin-left: 50px;
+}
+.product {
+    display: flex;
+    align-items: center;
+    background-image: url('nuotraukos/image3.jpg');
+    margin: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    position: relative;
+    width: 60%;
+}
+.descriptionStyles {
+ margin-top: 70px;
+ margin-left: 50px;
+}
+.ratingStyles {
+    position: relative;
+    bottom: 150px;
+    margin-left: 50px;
+}
+.nuotraukos {
+    width: 175px;
+    height: 175px;
+    margin-right: 20px;
+}
+
+.price {
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+    margin-top: 10px;
+    margin-left: 750px;
+}
+.discounted-price {
+    color: white;
+}
+.price1 {
+    font-size: 16px;
+    color: #a8a8a8;
+    text-decoration: line-through;
+    margin-left: 10px;
+    position: absolute;
+    right: 8%
+}
+.discount-tag {
+    background-color: red;
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    width: 50px;
+    position: absolute;
+    top: 20%;
+    left: 14%;
+    padding: 5px;
+}
+.button {
+    background-color: #fcb800;
+    height: 50px;
+    width: 200px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: -30px;
+    margin-left: 750px;
+}
+.button:hover {
+    background-color: #FF8C00
+}
+.checked {
+    color: orange;
+    position: relative;
+    font-size: 20px;
+}
