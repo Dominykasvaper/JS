@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+          function random(min, max) {
+            const minCeiled = Math.ceil(min);
+            const maxFloored = Math.floor(max);
+            return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
+        }
+
+    // Pirma Užduotis
+    let vardas = "Johnny";
+    let pavarde = "Depp";
+
+    if (vardas.length < pavarde.length) {
+    console.log(vardas);
+    } else {
+    console.log(pavarde);
+    }
+    // Antra Užduotis
+   console.log(vardas.toUpperCase() + " " + pavarde.toLowerCase());
+
+    // Trečia Užduotis
+    stringas = 'Johnny Depp';
+    console.log(stringas.charAt() + stringas[7].charAt());
+    
+    // Ketvirta Užduotis
+    let vardas1 = vardas.slice(-3).toUpperCase();
+    let pavarde1 = pavarde.slice(-3).toUpperCase();
+    let atsakymas = vardas1 + pavarde1;
+    console.log(atsakymas);
+    
+    // Penkta Užduotis
+    let american = "An American in Paris";
+    var result = american.replaceAll('A', '*');
+    var result = result.replaceAll('a', '*');
+    console.log(result);
+
+    // Šešta Užduotis
+    let american1 = "An American in Paris";
+    let skaicius = (american1.match(/a/gi) || []).length;
+    console.log(skaicius); 
+
+    // Septinta Užduotis
+   let sentence = "An American in Paris";
+   sentence = sentence.replace(/[aeiyou]/gi, '');
+   console.log(sentence);
+
+   let sentence1 = "Breakfast at Tiffany's";
+   sentence1 = sentence1.replace(/[aeiyou]/gi, '');
+   console.log(sentence1);
+
+   let sentence2 = "2001: A Space Odyssey";
+   sentence2 = sentence2.replace(/[aeiyou]/gi, '');
+   console.log(sentence2);
+
+   let sentence3 = "It's a Wonderful Life";
+   sentence3 = sentence3.replace(/[aeiyou]/gi, '');
+   console.log(sentence3);
+
+   // Aštunta Užduotis
+
+   let str = `Star Wars: Episode ${random(0,5)} ${random(1,9)} - A New Hope`
+   console.log(str);
+   console.log(str.slice(19,23));
+
+   // Devinta Užduotis
+
+   function generateRandomString(length = 3) {
+    const characters = 'abcdefghijklmnopqrstuvwxyz';
+    let result = '';
+    const charactersLength = characters.length;
+    for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * charactersLength);
+        result += characters[randomIndex];
+    }
+    return result;
+    
+}
+console.log(generateRandomString());
+/*
+let zvakes = random(5, 5000);
+if (zvakes < 1000) {
+console.log(zvakes + " Žvakės");
+console.log(zvakes + " Kaina"); 
+}
+ else if (zvakes > 1000){
+    console.log(zvakes + " Žvakės");
+    console.log(zvakes - (zvakes * 0.03) + " Kaina");
+ }
+ else if(zvakes > 2000){
+ console.log(zvakes + " Žvakės");
+ console.log(zvakes - (zvakes * 0.04) + " Kaina");
+ }
+ else if(zvakes > 4000){
+ console.log(zvakes + " Žvakės");
+ console.log(zvakes - (zvakes * 0.05) + " Kaina");
+ }
+ */
+ 
+let zvakes1 = random(5, 5000);
+
+console.log(zvakes1 + " Žvakės");
+
+if (zvakes1 > 1000) {
+    console.log(zvakes1 - (zvakes1 * 0.03) + " Kaina");
+} 
+else if (zvakes1 > 2000) {
+    console.log(zvakes1 - (zvakes1 * 0.04) + " Kaina");
+} 
+else if (zvakes1 > 3000) {
+    console.log(zvakes1 - (zvakes1 * 0.05) + " Kaina");
+}
+else if (zvakes1 > 4000) {
+    console.log(zvakes1 - (zvakes1 * 0.06) + " Kaina");
+}
+else {
+    console.log(zvakes1 + " Kaina");
+}
+
+
+    </script>
+</body>
+</html>
