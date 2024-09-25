@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Produktai</title>
+  </head>
+  <style>
+    #sarasas {
+      display: none;
+    }
+  </style>
+  <body>
+    <input type="text" id="tekstas" placeholder="Įveskite produktą" oninput="paieska()" />
+    <ul id="sarasas"></ul>
+
+    <script>
+      // Sukurkite aplikaciją kurioje suvedamas prekių sąrašas sekančiam apsipirkimui. Į laukelį įvedamas produkto pavadinimas kuris, po mygtuko “pridėti” paspaudimo, patalpinamas bendrame sąraše.
+      // Papildomai sukurkite funkcionalumą leidžiantį ištrinti pasirinktą prekę iš sąrašo.
+      // Papildomai sukurkite funkcionalumą leidžiantį įvesti norimo produkto kiekį.
+
+      const searchResult = [
+        "What to watch",
+        "What is my IP",
+        "When is Mother's Day 2024",
+        "How many weeks in a year",
+        "How many days until Christmas",
+        "How to screenshot on Mac",
+        "What time is it",
+        "How many ounces in a gallon",
+        "When is Easter 2024",
+        "How many ounces in a cup",
+      ];
+      for (let i = 0; i < searchResult.length; i++) { // Paleidžiame ciklą, kad eitu per visa masyvo žoždius, kurie yra "searchResult".
+        document.getElementById("sarasas").innerHTML += `<li>${searchResult[i]}</li>`; // Sutalpinam masyvą į ul elementą pagal id(sarasas).
+      }
+    
+      function paieska() {
+        let filtras = document.getElementById("tekstas").value.toUpperCase(); // Sukuriam kintamaji, kuris gauna gaunamaji teksta didžiosimis raidėmis.
+        var sar = document.getElementById("sarasas").getElementsByTagName("li"); // Sukuriam kintamaji, kuris gauna sarasa su "SearchResult" žodžiais.
+
+        var simbolis, tekstas = ""; // Kai vedamas tekstas į paieškos laukeli, kad žodžiai nesikartotu.
+
+        if (filtras != null && filtras != "") { // Patikriname ar kažkas yra įvesta į input laukelį.
+          document.getElementById("sarasas").style.display = "block"; // Jeigu nieko nėra įvesta, tai paslepiam visus žodžius.
+          for (let i = 0; i < sar.length; i++) { // Paleidžiam ciklą, kad patikrinti.
+          tekstas = sar[i].textContent || sar[i].innerText; //  Gaunamas to elemento tekstas iš <li></li>.
+          if (tekstas.toUpperCase().indexOf(filtras) > -1 ) { // Paleidžiamas ciklas, kad rašant raides, rodytu ar yra tokie <li> (sarasas) elementai.
+          sar[i].style.display = "block"; // Kai parašomas pvz "What to watch", ir ištrinam teksta, kad sugrįžtu visi galimi variantai, ka galima ieškoti input
+          } else {
+            sar[i].style.display = "none"; // Kai parašomas pvz "What to watch", rodytu ar yra toks elementas <li> (sarasas)
+          }
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

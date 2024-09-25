@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>game</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<style>
+    body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pagrindinis {
+    width: 500px;
+    height: 500px;
+    background-color: rgb(23, 24, 24);
+    position: relative;
+}
+.dezute {
+    width: 50px;
+    height: 50px;
+    background-color: rgb(226, 215, 236);
+    position: absolute;
+    cursor: pointer;
+}
+.informacija {
+    width: 500px;
+    margin-left: 10px;
+}
+.but {
+    background-color: blueviolet;
+    width: 100px;
+    height: 25px;
+    font-size: 12px;
+    border-radius: 3px;
+    border: none;
+}
+</style>
+<body>
+    <!--
+    Sukurkite žaidimą.
+    Žaidimą žaidžia du žaidėjai: Player(Jūs) ir Kompiuteris. 
+    Žaidimą sudaro 10 raundų, vieno raundo trukmė 30 sekundžių. 
+    Raundą laimi tas žaidėjas kuris surenka daugiau taškų.
+    Kiekvieno raundo pabaigoje atvaizduokite laimėtojo vardą, surinktus taškus raunde ir visus laimėtus roundus prie žaidėjų vardų.
+
+
+    Žaidimo esmė:
+    Puslapyje atvaizduojamas kvadratas(50px x 50px) kuris keičia savo atsitiktinę poziciją bei savo fono spalvą kas 1 sekundę. 
+    Jeigu žaidėjas spėja per šį laiko tarpą paspausti ant kvadrato - taškas skiriamas jam. Priešingu atveju laimi kompiuteris.
+    Kiekviename rounde naršyklėje atvaizduokite laikmatį skaičiuojantį roundo trukmę. 
+    Pasibaigus žaidimui atvaizduokite laimėtojo vardą bei mygtuką, ant kurio paspaudus žaidimas būtų pradedamas iš naujo.
+    -->
+
+    <div class="pagrindinis"></div>
+    <div class="informacija">
+        <button class="but" onclick="reset()">START</button>
+        <div class="laikmatis"></div>
+        <div class="taskai"></div>
+    </div>
+    <script>
+        function random(min, max) {
+    const minCeiled = Math.ceil(min);
+    const maxFloored = Math.floor(max);
+    return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); 
+}
+// random funkcija reikalinga rasti atsitiktinius skaicius 
+
+//kintamieji  kuriu pagalba funkcijuose ir kt skirtiguose veiksmuose nauduojam tam tikriems veiksmams atlikti
+
+let intervalas = setInterval(laikmatis, 1000), // kintamasis intervalas kad galeciau ji sustabdyti arba paleisti
+sec = 10, //nustaytas intervalas po kuriu raundas baigesi
+round = 0, // nustatyta roundu kiekis kuris eigoje bus keiciamas ir skaiciuojamas
+playerA = 0, //zaidejas 
+playerB = 0, //compiuteris
+compiuterisPaspaude = 0,    // kiek kartu galimai kompiuteris paspaude konteineris 
+zaidimasBaigtas = false,        //tikrina ar dar vis vyksta zaidimas
+zaidejoLaimetiRaundai = 0,  // konteineris zaidejo rounduose tasku sumavimui 
+kompiuterioLaimetiRaundai = 0  // konteineris kompiuterio rounduose tasku sumavimui 
+
+
+function laikmatis() {   //paleista funkcija ir aprasymas kas tame intervale turi veikti 
+    if(zaidimasBaigtas === false) {// nurodo ir tikrina ar zaidimas yra baigtas aprasymas kada jis vis tesiasi
+        document.querySelector('.laikmatis').innerHTML = `<div>Laikmatis : ${sec}</div>` //isvedimas laiko skaiciavimas
+    const pozicija_X = random(0, 450) // random pagalba sugeneruojami atsitiktines pozicijos 
+    const pozicija_Y = random(0, 450)   // random pagalba sugeneruojami atsitiktines pozicijos 
+   document.querySelector('.pagrindinis').innerHTML = `<div class="dezute" style = "top:${pozicija_Y}px; left:${pozicija_X}px;" onclick="paspaudimas()"></div>` //su styliaus pagalba nurodome krypti koordinatem nustatyti
+   document.querySelector('.dezute').style.backgroundColor = `rgb(${random(100, 255)},${random(100, 255)},${random(100, 255)})`// styliaus pagalba ir random funkcija nustatom spalvu keitima kas sekunde
+   compiuterisPaspaude = random(0,1) // nusakom kad kompiuteris turi du variantus arba paspaude arba ne
+   if(compiuterisPaspaude === 1) { // jeigu paspaude 
+    playerB++ // sudedam taskus kompiuteriui 
+   }
+   sec-- // sakom kad skaiciuotu i minus
+   if(sec <= 0) { //ir nurodom salygas jei sekundes tampa = 0 tada taskus sumuojam i raundus
+    round++
+    sec = 10 //kai veiksmas atliktas uzduodam nauja cikla 10 sekundziu 
+    if(playerA > playerB) { //tikrinam jei zaidejo taskai bus didesni 
+    zaidejoLaimetiRaundai++ // jei tikrinimas true dedam i zaidejo raunda taskus
+    document.querySelector('.taskai').innerHTML += `<div>Roundas: ${round} žaidimą laimėjo žaidėjas su ${playerA} taskais</div>`// isvedam i html  zaidejo taskus
+    }else { // jeigu vis del to laimejo kompiuteris dedam i kompiuterio raundus taskus
+    kompiuterioLaimetiRaundai++ 
+    document.querySelector('.taskai').innerHTML += `<div>Roundas: ${round} žaidimą laimėjo kompiuteris su ${playerB} taskais</div>` // isvedam kompiuterio taskus 
+    }
+    playerA = 0 //nunulinam taskus
+    playerB = 0  //nunulinam taskus
+   } 
+   if(round === 2) {  //sakom kad raundu yra 2
+    if(zaidejoLaimetiRaundai > kompiuterioLaimetiRaundai) { //tikrinam ar zaidejo raunduose tasku suma yra didesne
+    document.querySelector('.taskai').innerHTML += `<div>Žaidimą laimėjo žaidėjas</div>`// jei taip isvedam kad zaidima laimejo zaidejas
+    }else {// jei likes pasirinkimas
+    document.querySelector('.taskai').innerHTML += `<div>Žaidimą laimėjo kompiuteris</div>`  // isvedam kad laimejo kitas variantas likes
+    }
+    clearInterval(intervalas) // isvalom intervala
+    zaidimasBaigtas = true  // sakom , kad zaidimas baigtas
+   }
+   
+  // console.log(pozicija_X + " " +  pozicija_Y)
+} }
+function paspaudimas() { //sakom kad jei zaidejas paspaude ant dezutes jam yra pridedami taskai
+    playerA++
+}
+ function reset() { // su sia funkcija pradedam nauja zaidima paspaudus ant mygtuko  ir nustatom viska isnaujo
+    // clearInterval(laikmatis)
+    document.querySelector('.taskai').innerHTML = `` // istrinam taip html pateikiam tuscia ir tada is naujo uzpildam
+    sec = 10
+    round = 0
+    playerA = 0 //zaidejas 
+    playerB = 0 //compiuteris
+    compiuterisPaspaude = 0
+    zaidimasBaigtas = false
+    zaidejoLaimetiRaundai = 0
+    kompiuterioLaimetiRaundai = 0
+    intervalas = setInterval(laikmatis, 1000)
+ }
+    </script>
+</body>
+</html>
