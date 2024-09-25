@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      margin: 0;
+      /*background-image: url(nuotraukos/wallpaper.jpg);*/
+    }
+    .monitor, .remote, .volume, .channel, .buttonPlius, .buttonMinus, .ch, .ch1, .muzika1, .muzika2, .muzika3, #video, #video1, #video2 {
+      position: absolute;
+    }
+    .monitor {
+      width: 1300px;
+      left: 16%;
+      top: 3%;
+    }
+    .remote {
+      width: 225px;
+      height: 600px;
+      margin-top: 10%;
+      right: 86%;
+    }
+    .volume {
+      left: 28%;
+      top: 16%;
+      font-size: 36px;
+      color: white;
+    }
+    .channel {
+      left: 63%;
+      top: 16%;
+      font-size: 36px;
+      color: white;
+    }
+    .buttonPlius {
+      left: 4.2%;
+      top: 42%;
+      height: 35px;
+      width: 45px;
+      font-size: 10px;
+      opacity: 0;
+    }
+    .buttonMinus {
+      left: 4.2%;
+      top: 47%;
+      height: 35px;
+      width: 45px;
+      font-size: 10px;
+      opacity: 0;
+    }
+    .ch, .ch1 {
+      height: 35px;
+      width: 45px;
+      opacity: 0;
+      left: 9.7%;
+    }
+    .ch {
+      top: 42%;
+    }
+    .ch1 {
+      top: 47%;
+    }
+    .muzika1, .muzika2, .muzika3 {
+      height: 25px;
+      width: 45px;
+      top: 29%;
+      opacity: 0;
+    }
+    .muzika1 {
+      right: 93.5%;
+    }
+    .muzika2 {
+      right: 90.7%;
+    }
+    .muzika3 {
+      right: 87.9%;
+    }
+    #video, #video1, #video2 {
+      top: 16.8%;
+      left: 26.3%;
+      display: none;
+      object-fit: fill;
+    }
+  </style>
+  <body>
+    <img class="monitor" src="nuotraukos/monitor.jpg" />
+
+    <img class="remote" src="nuotraukos/remote.jpg" />
+
+    <button type="button" class="buttonPlius">Volume +</button>
+
+    <button type="button" class="buttonMinus">Volume -</button>
+
+    <button type="button" class="ch">CH+</button>
+
+    <button type="button" class="ch1">CH-</button>
+
+    <button class="muzika1" onclick="toggleVideo()" id="videoToggle">
+      Video
+    </button>
+    <video id="video" width="900" height="457" controls>
+      <source src="nuotraukos/Music.mp4" type="video/mp4" />
+    </video>
+
+    <button class="muzika2" onclick="toggleVideo1()" id="videoToggle1">
+      Video
+    </button>
+    <video id="video1" width="900" height="457" controls>
+      <source src="nuotraukos/Music1.mp4" type="video/mp4" />
+    </video>
+
+    <button class="muzika3" onclick="toggleVideo2()" id="videoToggle2">
+      Video
+    </button>
+    <video id="video2" width="900" height="457" controls>
+      <source src="nuotraukos/Music2.mp4" type="video/mp4" />
+    </video>
+
+    <h2 class="volume">Volume</h2>
+    <h2 class="channel">Channel</h2>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const video = document.getElementById("video");
+        const video1 = document.getElementById("video1");
+        const video2 = document.getElementById("video2");
+        const volumeDownButton = document.querySelector(".buttonMinus");
+        const volumeUpButton = document.querySelector(".buttonPlius");
+
+        volumeDownButton.addEventListener("click", () => {
+          if (video.volume > 0.1) {
+            video.volume -= 0.1;
+          }
+        });
+
+        volumeUpButton.addEventListener("click", () => {
+          if (video.volume < 1) {
+            video.volume += 0.1;
+          }
+        });
+
+        volumeDownButton.addEventListener("click", () => {
+          if (video1.volume > 0.1) {
+            video1.volume -= 0.1;
+          }
+        });
+
+        volumeUpButton.addEventListener("click", () => {
+          if (video1.volume < 1) {
+            video1.volume += 0.1;
+          }
+        });
+
+        volumeDownButton.addEventListener("click", () => {
+          if (video2.volume > 0.1) {
+            video2.volume -= 0.1;
+          }
+        });
+
+        volumeUpButton.addEventListener("click", () => {
+          if (video2.volume < 1) {
+            video2.volume += 0.1;
+          }
+        });
+      });
+
+      function toggleVideo() {
+        const video = document.getElementById("video");
+
+        if (video.style.display === "none") {
+          video.style.display = "block";
+          video.volume = 0;
+          video.play();
+        } else {
+          video.style.display = "none";
+          video.pause();
+          video.currentTime = 0;
+        }
+      }
+
+      function toggleVideo1() {
+        const video1 = document.getElementById("video1");
+
+        if (video1.style.display === "none") {
+          video1.style.display = "block";
+          video1.volume = 0;
+          video1.play();
+        } else {
+          video1.style.display = "none";
+          video1.pause();
+          video1.currentTime = 0;
+        }
+      }
+
+      function toggleVideo2() {
+        const video2 = document.getElementById("video2");
+
+        if (video2.style.display === "none") {
+          video2.style.display = "block";
+          video2.volume = 0;
+          video2.play();
+        } else {
+          video2.style.display = "none";
+          video2.pause();
+          video2.currentTime = 0;
+        }
+      }
+
+      class Televizorius {
+        #factory_brand;
+        #factory_channel;
+        #factory_sound;
+
+        constructor(brand, channel, sound) {
+          this.#factory_brand = brand;
+          this.#factory_channel = channel;
+          this.#factory_sound = sound;
+
+          this.brand = brand;
+          this.channel = channel;
+          this.sound = sound;
+        }
+
+        SoundUp(increase) {
+          this.sound += increase;
+          if (this.sound > 100) {
+            this.sound = 100;
+          }
+          this.UpdateVolumeDisplay();
+        }
+
+        SoundDown(decrease) {
+          this.sound -= decrease;
+          if (this.sound < 0) {
+            this.sound = 0;
+          }
+          this.UpdateVolumeDisplay();
+        }
+
+        ChannelUp(increase) {
+          this.channel += increase;
+          if (this.channel > 100) {
+            this.channel = 100;
+          }
+          this.UpdateChannelDisplay();
+        }
+
+        ChannelDown(decrease) {
+          this.channel -= decrease;
+          if (this.channel < 0) {
+            this.channel = 0;
+          }
+          this.UpdateChannelDisplay();
+        }
+
+        Print() {
+          console.log(
+            `Brand: ${this.brand}, Channel: ${this.channel}, Volume: ${this.sound}`
+          );
+        }
+
+        UpdateVolumeDisplay() {
+          document.querySelector(
+            ".volume"
+          ).textContent = `Volume: ${this.sound}`;
+        }
+
+        UpdateChannelDisplay() {
+          document.querySelector(
+            ".channel"
+          ).textContent = `Channel: ${this.channel}`;
+        }
+      }
+
+      var tv = new Televizorius("Sony", 0, 0);
+      tv.Print();
+
+      document
+        .querySelector(".buttonPlius")
+        .addEventListener("click", function () {
+          tv.SoundUp(10);
+        });
+
+      document
+        .querySelector(".buttonMinus")
+        .addEventListener("click", function () {
+          tv.SoundDown(10);
+        });
+
+      document.querySelector(".ch").addEventListener("click", function () {
+        tv.ChannelUp(1);
+      });
+
+      document.querySelector(".ch1").addEventListener("click", function () {
+        tv.ChannelDown(1);
+      });
+    </script>
+  </body>
+</html>
