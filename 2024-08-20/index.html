@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function random(min, max) {
+        const minCeiled = Math.ceil(min);
+        const maxFloored = Math.floor(max);
+        return Math.floor(
+          Math.random() * (maxFloored - minCeiled + 1) + minCeiled
+        );
+      }
+
+      //     Naršyklėje nupieškite linija iš 400 “*”.
+      //     Naudodami css stilių “suskaldykite” liniją taip, kad visos žvaigždutės matytusi ekrane;
+      //     Programiškai “suskaldykite” žvaigždutes taip, kad vienoje eilutėje nebūtų daugiau nei 50 “*”;
+
+      document.write(`<h1> 1 Užduotis</h1>`);
+
+      for (let i = 1; i <= 400; i++) {
+        document.write(`*`);
+        if (i % 50 === 0) {
+          document.write(`<br>`);
+        }
+      }
+
+      // Sugeneruokite 300 atsitiktinių skaičių nuo 0 iki 300, atspausdinkite juos atskirtus tarpais ir suskaičiuokite kiek tarp jų yra didesnių už 150.  Skaičiai didesni nei 275 turi būti raudonos spalvos.
+
+      document.write(`<h1> 2 Užduotis</h1>`);
+
+      let didesni150 = 0;
+
+      for (let i = 0; i < 300; i++) {
+        let skaicius = random(0, 300);
+        document.write(` ${skaicius}`);
+        if (skaicius > 150) {
+          didesni150++;
+        }
+        if (skaicius > 275) {
+          document.write(`<span style="color: red;")> ${skaicius} </span>`);
+        }
+      }
+
+      document.write(`<p><br>Didesnių už 150: ${didesni150}</p>`);
+
+      // Vienoje eilutėje atspausdinkite visus skaičius nuo 1 iki 3000, kurie dalijasi iš 77 be liekanos. Skaičius atskirkite kableliais. Po paskutinio skaičiaus kablelio neturi būti. Jeigu reikia, panaudokite css, kad visi rezultatai matytusi ekrane.
+
+      document.write(`<h1> 3 Užduotis</h1>`);
+
+      skaicius = 0;
+      let resultatas = 0;
+
+      for (let i = 1; i <= 5000; i++) {
+        skaicius++;
+        if (skaicius % 77 === 0) {
+          let kablelis = ",";
+          if (skaicius === 2926) {
+            kablelis = "";
+          }
+          resultatas += skaicius + kablelis;
+        }
+      }
+      document.write(`${resultatas}`);
+      document.write(`<br>`);
+
+      skaicius = 0;
+      resultatas = 0;
+      let suma = 3000;
+      let dalinys = 77;
+
+      for (let i = 1; i <= suma; i++) {
+        skaicius++;
+        //   if (skaicius % dalinys === 0) {
+        //       let kablelis = ",";
+        if (skaicius % dalinys === 0) {
+          // kablelis = '';
+          resultatas +=
+            skaicius + (skaicius === suma - (suma % dalinys) ? `` : `, `);
+        }
+      }
+      // }
+      document.write(`<p>${resultatas}`);
+
+      //Nupieškite kvadratą iš “*”, kurio kraštinės sudaro 100 “*”. Panaudokite css stilių, kad kvadratas ekrane atrodytų kvadratinis. (Priskirkite reikiamą eilučių aukštį)
+      // Prieš tai nupieštam kvadratui nupieškite raudonas istrižaines.
+      // * * * * * * * * * * *
+      // * * * * * * * * * * *
+      // * * * * * * * * * * *
+      // * * * * * * * * * * *
+      // * * * * * * * * * * *
+      // * * * * * * * * * * *
+      // * * * * * * * * * * *
+
+      document.write(`<h1> 4 Užduotis</h1>`);
+
+      let didys = 25;
+      resultatas = "";
+
+      for (let eilute = 0; eilute < didys; eilute++) {
+        for (let stulpelis = 0; stulpelis < didys; stulpelis++) {
+          if (eilute === stulpelis || stulpelis === didys - 1 - eilute) {
+            resultatas += `<span style = "color: red;">*</span>`;
+          } else {
+            resultatas += "*";
+          }
+        }
+        resultatas += "<br>";
+      }
+      document.write(resultatas);
+
+      //Metam monetą. Monetos kritimo rezultatą imituojam rand() funkcija, kur 0 yra herbas, o 1 - skaičius. Monetos metimo rezultatus išvedame į ekraną atskiroje eilutėje: “S” jeigu iškrito skaičius ir “H” jeigu herbas. Suprogramuokite tris skirtingus scenarijus kai monetos metimą stabdome:
+      // Iškritus herbui;
+      // Tris kartus iškritus herbui;
+      // Tris kartus iš eilės iškritus herbui;
+
+      document.write(`<h1> 5 Užduotis</h1>`);
+
+      let herbas = "H";
+      resultatas = 0;
+      skaicius = "S";
+      let moneta = random(0, 1);
+
+      if (moneta === 0) {
+        document.write(`Iškrito ${herbas} `);
+      } else {
+        document.write(`Iškrito ${skaicius} `);
+      }
+
+      document.write(`<h1> ------ </h1>`);
+      while (true) {
+        moneta = random(0, 1);
+        if (moneta === 1) {
+          document.write(` Iškrito ${herbas}`);
+          resultatas++;
+        } else {
+          document.write(` Iškrito ${skaicius}`);
+        }
+        if (resultatas === 3) {
+          break;
+        }
+      }
+
+      // Tris kartus iš eilės iškritus herbui;
+      document.write(`<h1> ---2 dalis--- </h1>`);
+      while (true) {
+        moneta = random(0, 1);
+        if (moneta === 1) {
+          document.write(` Iškrito ${herbas}`);
+          resultatas++;
+        } else {
+          document.write(` Iškrito ${skaicius}`);
+          resultatas = 0;
+        }
+        if (resultatas === 3) {
+          break;
+        }
+      }
+
+      // Kazys ir Petras žaidžiai šaškėm. Petras surenka taškų kiekį nuo 10 iki 20, Kazys surenka taškų kiekį nuo 5 iki 25. Vienoje eilutėje išvesti žaidėjų vardus su taškų kiekiu ir “Partiją laimėjo: ​laimėtojo vardas​”. Taškų kiekį generuokite funkcija ​rand()​. Žaidimą laimi tas, kas greičiau surenka 222 taškus. Partijas kartoti tol, kol kažkuris žaidėjas pirmas surenka 222 arba daugiau taškų.
+
+      document.write(`<h1>7 Užduotis</h1>`);
+      let PetroVisiTaskai = 0;
+      let KazioVisiTaskai = 0;
+
+      while (true) {
+        let PetrasTaskai = random(10, 20);
+        let KazysTaskai = random(5, 25);
+
+        if (PetrasTaskai > KazysTaskai) {
+          document.write(`Partija laimėjo: Petras`);
+        } else if (PetrasTaskai < KazysTaskai) {
+          document.write(`Partija laimėjo: Kazys`);
+        } else {
+          document.write(`Laimėjo draugystė`);
+        }
+        document.write(
+          `<br>Petro taškai: ${PetrasTaskai}<br> Kazio taškai: ${KazysTaskai} <br>`
+        );
+
+        PetroVisiTaskai += PetrasTaskai;
+        KazioVisiTaskai += KazysTaskai;
+
+        document.write(`-----<br>`);
+        if (PetroVisiTaskai >= 222 || KazioVisiTaskai >= 222) {
+          if (PetroVisiTaskai > KazioVisiTaskai) {
+            document.write(`Žaidimą laimėjo Petras<br>`);
+          } else if (PetroVisiTaskai < KazioVisiTaskai) {
+            document.write(`Žaidimą laimėjo Kazys <br>`);
+          } else {
+            document.write(`Žaidimą laimėjo draugystė`);
+          }
+          break;
+        }
+      }
+      document.write(
+        `<br> Petro turimi ${PetroVisiTaskai} taškai Vs  Kazio turimi ${KazioVisiTaskai} taškai.`
+      );
+
+      //Sumodeliuokite vinies kalimą. Įkalimo gylį sumodeliuokite pasinaudodami rand() funkcija. Vinies ilgis 8.5cm (pilnai sulenda į lentą).
+      // “Įkalkite” 5 vinis mažais smūgiais. Vienas smūgis vinį įkala 5-20 mm. Suskaičiuokite kiek reikia smūgių.
+
+      //“Įkalkite” 5 vinis dideliais smūgiais. Vienas smūgis vinį įkala 20-30 mm, bet yra 50% tikimybė (pasinaudokite rand() funkcija tikimybei sumodeliuoti), kad smūgis nepataikys į vinį. Suskaičiuokite kiek reikia smūgių.
+
+      document.write(`<h1>8 Užduotis</h1>`);
+
+      let vinis = 85;
+      let smugis = 0;
+      let ikalta = 0;
+
+      // while (ikalta < vinis * 5) {
+      //   ikalta += random(5, 20);
+      //   smugis++;
+      // }
+      document.write(`${smugis}`);
+      document.write(`<h1>---2 Dalis---</h1>`);
+   
+
+      // while(ikalta < vinis * 5){
+      //   if(random(0, 1) === 0){
+      //     document.write(`<br>Nepataikė ${smugis} `)
+      //   } else {
+      //   ikalta += random(20, 30);
+      //   console.log(ikalta)
+      //   document.write(`<br> ${ikalta}`)
+      // }
+      // smugis++;
+      // }
+
+      // document.write(`<br>${smugis}`)
+      
+      for (let i = 1; i <= 5; i++) {
+        let smugis = 0;
+        let ikalta = 0;
+        // document.write(i + ' vinis<br>')
+          while(true) {
+              ikalta += random(20, 30);
+              // console.log(ikalta)
+
+              smugis++;
+              if(ikalta > vinis) {
+                break;
+              }
+            }
+          document.write(`<p>Viniui ikalti reikejo: ${smugis}</p>`);
+        }
+      
+
+    </script>
+  </body>
+</html>
