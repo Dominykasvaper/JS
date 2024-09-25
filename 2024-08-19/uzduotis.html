@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function random(min, max) {
+        const minCeiled = Math.ceil(min);
+        const maxFloored = Math.floor(max);
+        return Math.floor(
+          Math.random() * (maxFloored - minCeiled + 1) + minCeiled
+        );
+      }
+
+      document.write("<h1>Pirma užduotis</h1>");
+
+      for (let i = 0; i < 400; i++) {
+        document.write("*");
+        if ((i + 1) % 50 == 0) {
+          document.write("<br>");
+        }
+      }
+
+      document.write("<h1>Antra užduotis</h1>");
+
+      let count = 0;
+
+      for (let i = 0; i < 301; i++) {
+        if (i >= 275) {
+          document.write(`<span style="color: red;"> ${i}</span>`);
+        } else {
+          document.write(`${i} `);
+        }
+        if (i <= 149) {
+          count++;
+        }
+      }
+      document.write(`<br><br>Total numbers up to 150: ` + count);
+
+      document.write("<h1>Trečia užduotis</h1>");
+
+      let numbers = [];
+      for (let i = 1; i <= 3000; i++) {
+        if (i % 77 === 0) {
+          numbers.push(i);
+        }
+      }
+      document.write(numbers.join(", "));
+
+      document.write("<h1>Ketvirta užduotis</h1>");
+
+      dydis = 25;
+      rezultatas = "";
+
+      for (let eilute = 0; eilute < dydis; eilute++) {
+        for (let stulpelis = 0; stulpelis < dydis; stulpelis++) {
+          if (eilute === stulpelis || eilute + stulpelis === dydis - 1) {
+            rezultatas += '<span style="color: red;">*</span>';
+          } else {
+            rezultatas += "*";
+          }
+        }
+        rezultatas += "<br>";
+      }
+
+      document.write(rezultatas);
+
+      document.write("<h1>Šešta užduotis</h1>");
+
+      let moneta = 0;
+      let H = 0;
+      document.write(" Scenarijus a): <br>");
+      while (true) {
+        moneta = random(0, 1);
+        if (moneta === 1) {
+          document.write(" Iskrito skaicius.<br>");
+        } else {
+          document.write(" Iskrito herbas. <br> Metimai baigesi");
+          break;
+        }
+      }
+
+      document.write("<br> <br> Scenarijus b): <br>");
+      while (true) {
+        moneta = random(0, 1);
+        if (moneta === 1) {
+          document.write(" Iskrito skaicius.<br>");
+        } else {
+          document.write(" Iskrito herbas. <br> Metimai baigesi");
+          H++;
+        }
+        if (H === 3) {
+          document.write(" Metimai baigesi");
+          break;
+        }
+      }
+
+      document.write("<br> <br> Scenarijus c): <br>");
+      while (true) {
+        moneta = random(0, 1);
+        if (moneta === 1) {
+          document.write(" Iskrito skaicius.<br>");
+          H = 0;
+        } else {
+          document.write(" Iskrito herbas. <br>");
+          H++;
+        }
+        if (H === 3) {
+          document.write(" Metimai baigesi");
+          break;
+        }
+      }
+
+      document.write("<h1>Septinta užduotis</h1>");
+
+      let PetrasTotalPoints = 0;
+      let KazysTotalPoints = 0;
+
+      while (true) {
+        let PetrasPoints = random(10, 20);
+        let KazysPoints = random(5, 25);
+
+        document.write(
+          `Petras turi ${PetrasPoints} taškų, o Kazys turi ${KazysPoints} taškų<br>`
+        );
+        if (PetrasPoints > KazysPoints) {
+          document.write(`Laimėjo Petras<br>`);
+        } else if (PetrasPoints < KazysPoints) {
+          document.write(`Laimėjo Kazys`);
+        } else {
+          document.write(`Abu surinko tiek pat<br>`);
+        }
+
+        PetrasTotalPoints += PetrasPoints;
+        KazysTotalPoints += KazysPoints;
+
+        if (PetrasTotalPoints >= 222 && PetrasTotalPoints > KazysTotalPoints) {
+          document.write(
+            `Petras laimėjo žaidimą su ${PetrasTotalPoints} taškais`
+          );
+          break;
+        } else if (
+          KazysTotalPoints >= 222 &&
+          KazysTotalPoints > PetrasTotalPoints
+        ) {
+          document.write(
+            `Kazys laimėjo žaidima su ${KazysTotalPoints} taškais`
+          );
+          break;
+        }
+      }
+
+      document.write("<h1>Aštunta užduotis</h1>");
+
+      let NailLength = 85;
+      let SmallHit = 0;
+      let Total = 0;
+
+        for (let i = 1; i <= 5; i++) {
+        document.write(i + " kalama Vinis<br>");
+        let NormalLength = NailLength;
+        
+        while (true) {
+          let Hit = random(5, 20);
+          NormalLength -= Hit;
+          SmallHit++;
+          document.write(` ${SmallHit} smugis sukala ${Hit} mm, `);
+
+          Total += Hit;
+
+          if (NormalLength <= 0) {
+            document.write(`<br><strong>Iš viso ${SmallHit} smūgių, ${Total} mm</strong><br>`);
+            SmallHit = 0;
+            Total = 0;
+            break;
+          }
+        }
+      }
+
+
+      document.write("<h1>2 Dalis</h1>");
+
+      for (let i = 1; i < 5; i++){
+        document.write(i + "kalama Vinis<br>");
+        let NormalLength = NailLength;
+
+        while(true) {
+          let Hit = random(5, 20);
+          let OnTarget = random(0, 1);
+          if (OnTarget === 1) {
+          NormalLength -= Hit;
+          SmallHit++;
+          document.write(` ${SmallHit} sukala ${Hit} mm,`);
+
+          Total += Hit;
+
+          if (NormalLength <= 0) {
+          document.write(`<br><strong> Is viso ${SmallHit} smugiu, ${Total} mm </strong><br>`);
+          SmallHit = 0;
+          Total = 0;
+          break;
+          }
+        } else {
+          document.write(`<strong> Nepataike</strong>`);
+      }
+    }
+  }
+    </script>
+  </body>
+</html>
